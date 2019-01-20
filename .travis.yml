@@ -4,8 +4,8 @@ services:
 - docker
 
 before_install:
-- VERSION=v1.11.x-7.5-redhat
-- CENTOS_VERSION=7.5.1804
+- VERSION=v1.11.6-7.6
+- CENTOS_VERSION=7.6.1810
 - DOCKER_VERSION=1.13.1-75.git8633870.el7.centos.x86_64
 - KUBERNETES_VERSION=v1.11.6
 
@@ -16,7 +16,7 @@ script:
    "yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm &&
       yum install -y https://download.ceph.com/rpm-luminous/el7/noarch/ceph-release-1-1.el7.noarch.rpm &&
       mkdir -p /rpms &&
-      yum remove -y python-chardet &&
+      yum remove -y python-chardet  &&
       yum -y install --downloadonly --downloaddir=/rpms yum-utils device-mapper-persistent-data lvm2 &&
       yum -y install --downloadonly --downloaddir=/rpms docker-${DOCKER_VERSION} docker-python docker-compose python-chardet python-requests python-jinja2 &&
       yum -y install --downloadonly --downloaddir=/rpms ipset ipvsadm conntrack-tools &&
@@ -26,6 +26,6 @@ script:
       yum install -y createrepo &&
       yum clean all && createrepo /rpms"
 - sudo chmod -R 755 ${PWD}/rpms
-- docker build -t wisecloud/yum-repo:${VERSION} .
+- docker build -t shonge/yum-repo:${VERSION} .
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-- docker push wisecloud/yum-repo:${VERSION}
+- docker push shonge/yum-repo:${VERSION}
