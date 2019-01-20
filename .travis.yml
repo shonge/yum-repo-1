@@ -26,6 +26,6 @@ script:
       yum install -y createrepo &&
       yum clean all && createrepo /rpms"
 - sudo chmod -R 755 ${PWD}/rpms
-- docker build -t wisecloud/yum-repo:${VERSION} .
+- docker build -t shonge/yum-repo:${VERSION} .
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - docker push shonge/yum-repo:${VERSION}
