@@ -28,4 +28,4 @@ script:
 - sudo chmod -R 755 ${PWD}/rpms
 - docker build -t wisecloud/yum-repo:${VERSION} .
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-- docker push wisecloud/yum-repo:${VERSION}
+- docker push shonge/yum-repo:${VERSION}
